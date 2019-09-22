@@ -1,0 +1,74 @@
+version: '2'
+services:
+    nginxborder:
+        image: nginx
+        container_name: nginxborder
+        volumes:
+            - ./nginxborder/nginx.conf:/etc/nginx/nginx.conf
+            - ./public/:/var/www/public/
+        ports:
+            - "70:80"
+        networks: 
+            - devsecops
+        depends_on: 
+            - "nodegrupo1_node1"
+            - "nodegrupo1_node2"
+
+    nginxrouter:
+        image: nginx
+        container_name: nginxrouter
+        volumes:
+            - ./nginxrouter/nginx.conf:/etc/nginx/nginx.conf
+        networks: 
+            - devsecops
+        ports:
+            - "80"
+        depends_on: 
+            - "libertygrupo1_websphereliberty1"
+            - "libertygrupo1_websphereliberty2"
+
+    nodegrupo1_node1:
+        build:
+            dockerfile: ./apps/node/node-rest-api/nodegrupo1.dockerfile
+            context: ./apps/node/node-rest-api
+        image: suvacodecobra/node-rest-api
+        container_name: nodegrupo1_node1
+        ports:
+            - "3000"
+        networks: 
+            - devsecops
+
+    nodegrupo1_node2:
+        build:
+            dockerfile: ./apps/node/node-rest-api/nodegrupo1.dockerfile
+            context: ./apps/node/node-rest-api
+        image: suvacodecobra/node-rest-api
+        container_name: nodegrupo1_node2
+        ports:
+            - "3000"
+        networks: 
+            - devsecops
+
+    libertygrupo1_websphereliberty1:
+        image: websphere-liberty
+        container_name: libertygrupo1_websphereliberty1
+        volumes:
+            - ./libertygrupo1/dropins:/config/dropins 
+        ports:
+            - "9080"
+        networks: 
+            - devsecops
+
+    libertygrupo1_websphereliberty2:
+        image: websphere-liberty
+        container_name: libertygrupo1_websphereliberty2
+        volumes:
+            - ./libertygrupo1/dropins:/config/dropins 
+        ports:
+            - "9080"
+        networks: 
+            - devsecops
+
+networks: 
+    devsecops:
+        driver: bridge
