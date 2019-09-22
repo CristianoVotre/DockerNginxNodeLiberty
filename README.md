@@ -2,6 +2,7 @@
 
 A demonstração a seguir segue o diagrama abaixo:
 
+![Estrutura para a demonstração](https://raw.githubusercontent.com/CristianoVotre/DockerNginxNodeLiberty/master/images/diagramarede.png)
 
 Teremos um NGINX funcionando como porta de entrada para os acessos externos (porta 80) que irá fornecer aplicações Angular e rotear as chamadas para os aplicativos Node, os aplicativos Node, acionam outra rede de microserviços (em Java no Websphere Liberty) que contém novamente um Nginx como ponto de acesso, esses aplicações no Liberty acessam as bases de dados/mainframe e retornam as informações para o NodeJs que por sua vez devolve para as aplicações Angular rodando no browser do cliente.
 Isso é apenas uma demonstração de como utilizar Docker e o Docker Compose para montar em pouco tempo uma estrutura complexa e com diversas camadas de rede.
@@ -236,6 +237,35 @@ nginxrouter -> configuração do nginx para o nginxrouter
 public -> pasta onde devemos inserir as aplicações Angular compiladas, podem ser inseridas mais aplicações com o container rodando
 docker-compose.yml -> arquivo que monta TODO esse ambiente
 ```
+
+## Funcionando  :) 
+
+Iniciando o docker compose:
+
+![Voa garoto](https://raw.githubusercontent.com/CristianoVotre/DockerNginxNodeLiberty/master/images/subindoDockerCompose.png)
+
+Exibindo os containeres rodando:
+
+![Hoje sim...](https://raw.githubusercontent.com/CristianoVotre/DockerNginxNodeLiberty/master/images/containersRodando.png)
+
+Nginx listando as aplicações Angular instaladas:
+
+![](https://raw.githubusercontent.com/CristianoVotre/DockerNginxNodeLiberty/master/images/browserNginxListagemPublic.png)
+
+Acionando a aplicação:
+
+![](https://raw.githubusercontent.com/CristianoVotre/DockerNginxNodeLiberty/master/images/AngularEntrada.png)
+
+Obtendo as mensagens do Java (caminho longo até o sertão....)
+
+![](https://raw.githubusercontent.com/CristianoVotre/DockerNginxNodeLiberty/master/images/mensagemJavaNodeAngular.png)
+
+Fiz duas vezes e o loadBalance jogou cada uma das chamadas em um container:
+
+![](https://raw.githubusercontent.com/CristianoVotre/DockerNginxNodeLiberty/master/images/LoadBalance.png)
+
+
+
 ## Próximos Passos
 
 Essa foi apenas uma pequena amostra, preciso rebuscar melhor a solução, a forma de localizar os microserviços, log em uma stack ELK, mensageria com o Kafka, mas a idéia era demonstrar a utilização do Docker para a construção de um ambiente com linguagens heterogêneas e a comunicação entre eles.
