@@ -2,7 +2,7 @@
 
 A demonstração a seguir segue o diagrama abaixo:
 
-![Estrutura para a demonstração](https://raw.githubusercontent.com/CristianoVotre/DockerNginxNodeLiberty/master/images/diagramarede.png)
+![](http://www.corretoporconstrucao.com.br/images/diagramarede.png)
 
 Teremos um NGINX funcionando como porta de entrada para os acessos externos (porta 80) que irá fornecer aplicações Angular e rotear as chamadas para os aplicativos Node, os aplicativos Node, acionam outra rede de microserviços (em Java no Websphere Liberty) que contém novamente um Nginx como ponto de acesso, esses aplicações no Liberty acessam as bases de dados/mainframe e retornam as informações para o NodeJs que por sua vez devolve para as aplicações Angular rodando no browser do cliente.
 Isso é apenas uma demonstração de como utilizar Docker e o Docker Compose para montar em pouco tempo uma estrutura complexa e com diversas camadas de rede.
@@ -242,27 +242,27 @@ docker-compose.yml -> arquivo que monta TODO esse ambiente
 
 Iniciando o docker compose:
 
-![Voa garoto](https://raw.githubusercontent.com/CristianoVotre/DockerNginxNodeLiberty/master/images/subindoDockerCompose.png)
+![](http://www.corretoporconstrucao.com.br/images/subindoDockerCompose.png)
 
 Exibindo os containeres rodando:
 
-![Hoje sim...](https://raw.githubusercontent.com/CristianoVotre/DockerNginxNodeLiberty/master/images/containersRodando.png)
+![](http://www.corretoporconstrucao.com.br/images/containersRodando.png)
 
 Nginx listando as aplicações Angular instaladas:
 
-![](https://raw.githubusercontent.com/CristianoVotre/DockerNginxNodeLiberty/master/images/browserNginxListagemPublic.png)
+![](http://www.corretoporconstrucao.com.br/images/browserNginxListagemPublic.png)
 
 Acionando a aplicação:
 
-![](https://raw.githubusercontent.com/CristianoVotre/DockerNginxNodeLiberty/master/images/AngularEntrada.png)
+![](http://www.corretoporconstrucao.com.br/images/AngularEntrada.png)
 
 Obtendo as mensagens do Java (caminho longo até o sertão....)
 
-![](https://raw.githubusercontent.com/CristianoVotre/DockerNginxNodeLiberty/master/images/mensagemJavaNodeAngular.png)
+![](http://www.corretoporconstrucao.com.br/images/mensagemJavaNodeAngular.png)
 
 Fiz duas vezes e o loadBalance jogou cada uma das chamadas em um container:
 
-![](https://raw.githubusercontent.com/CristianoVotre/DockerNginxNodeLiberty/master/images/LoadBalance.png)
+![](http://www.corretoporconstrucao.com.br/images/LoadBalance.png)
 
 
 
